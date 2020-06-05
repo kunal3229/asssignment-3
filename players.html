@@ -1,0 +1,272 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+   <title></title>
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+    	<link rel="stylesheet"
+			  type="text/css"
+			  href="css/styles.css"
+          />	
+          <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  </head>
+  <body>
+
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="hystory.html">History</a></li>
+              <li><a href="rules.html">Rules</a></li>
+              <li><a href="matches.html">Iconic Matches</a></li>
+              <li class = "active"><a href="players.html">Players</a></li>
+              <li><a href="stats.html">Current status</a></li>
+              <li><a href="abous.html">About us </a></li>
+                            
+
+
+
+
+              <!-- here is the dropdown menu -->
+              <li class="dropdown">
+                <a href="contact.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">contact<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="email.html">email</a></li>
+                  <li><a href="phoneno.html">Phone numbres </a></li>
+                  <li><a href="roolno.html">Roll no.</a></li>
+
+                  <!-- can you add another item to the dropdown? -->
+                </ul>
+              </li>
+
+              <!-- the end of the dropdown menu -->
+
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+      <h1><center>Players</center></h1><br>
+
+      <h2><center>Tribute to one of the best players KOBE BRAYANT, who passed away in helecopter crash this year..</center></h2><br>
+    
+      <div class="row">
+        <div class="col-md-2">
+          <img id="image1" 
+           class="crop-img" src="kb1.jpg"> 
+        </div> <div class="col-md-2">
+          <img id="image2" 
+           class="crop-img" src="kb2.jpg"> 
+        </div> <div class="col-md-2">
+          <img id="image3" 
+           class="crop-img" src="kb3.jpg"> 
+        </div> <div class="col-md-2">
+          <img id="image4" 
+           class="crop-img" src="kb4.jpg"> 
+        </div> <div class="col-md-2">
+          <img id="image5" 
+           class="crop-img" src="kb5.jpg"> 
+        </div> <div class="col-md-2">
+          <img id="image6" 
+           class="crop-img" src="kb6.jpg"> 
+        </div> 
+      
+      </div>
+      <!--
+        this is the large image which is
+        on a row of its own. 
+        The code is similar to the last example
+        of the previous module, but I have
+        added a backwards and forwards button
+      -->
+      <div class="row">
+        <div class="col-md-1">
+          <button id="backward">&lt;</button>
+        </div><div class=" col-md-2">&nbsp;</div>
+        <div class="col-md-6">
+          <img id="bigImage" class="large-img" src="kb1.jpg"/> 
+        </div><div class=" col-md-2">&nbsp;</div>
+        <div class="col-md-1">
+          <button id="forward">&gt;</button>
+        </div>
+      </div>
+    </div>
+  
+    <script>
+      // whether the slideshow is paused or not
+      var paused = false;
+  
+      // when you click on a thumbnail
+      // it sets the src of the big image
+      // to be the same as the image
+      // you clicked on
+      $(".crop-img").click(function(){
+        $("#bigImage").attr('src', 
+          $(this).attr('src'));
+      });
+  
+      // the counter variable that keeps
+      // track of which image you are showing
+      var counter = 1;
+      // virtually click on the current
+      // image to load it into the big image
+      $("#image"+counter).click();
+  
+      // when you click on the backwards
+      // button select the previous image
+      $("#backward").click(function (){
+        // go back one in the counter
+        counter = counter - 1;
+        // if we are below 1 (the first
+        // image) loop round to 4 (the
+        // last image)
+        if(counter < 1){
+          counter = 4;
+        }
+        // virtually click on the current
+        // image to load it into the big image
+        $("#image"+counter).click();
+      });
+  
+      // when you click on the backwards
+      // button select the next image
+      $("#forward").click(function (){
+        // go forward one in the counter
+        counter = counter + 1;
+        // if we are above 4 (the last
+        // image) loop round to 1 (the
+        // first image)
+        if(counter > 4){
+          counter = 1;
+        }
+        // virtually click on the current
+        // image to load it into the big image
+        $("#image"+counter).click();
+      });
+  
+      // when you click the big image 
+      // toggle pausing. Set paused to 
+      // not paused, i.e. if it is paused
+      // set it to not paused, if it is 
+      // not paused set it to paused
+      $("#bigImage").click(function (){
+        paused = !paused;
+      });
+  
+      // set interval makes it move 
+      // forward every 3 second
+      setInterval(function (){
+        // first check if it is paused
+        if(!paused){
+          // virtual click the forward
+          // button
+          $("#forward").click();
+        };
+      }, 3000);
+    </script>
+          <h1><center>Well, what’s a game with no legendary players? Here are the top 10 basketball players of all times-</center></h1><br>
+     <h2>
+      <div class = "row">
+       <div class = "col-md-6">
+           <center> 1.	Michael Jordan </center>
+        </div>
+        <div class = "col-md-6">
+            <img class = "crop-img" src = "michaljordan1.jpg">
+      </div>
+    </div><br>
+    <div class = "row">
+        <div class = "col-md-6">
+           <center> 2.	Johnson Magic</center> 
+        </div>
+        <div class = "col-md-6">
+          <img class = "crop-img" src = "magic.jpg">
+      </div>
+    </div><br> <div class = "row">
+        <div class = "col-md-6">
+            <center>  3.	Kareem Abdul-Jabbar </center> 
+        </div>
+        <div class = "col-md-6">
+          <img class = "crop-img" src = "abdul.jpg">
+      </div>
+    </div> <div class = "row">
+        <div class = "col-md-6">
+            <center>  4.	Larry Bird</center> 
+        </div>
+        <div class = "col-md-6">
+          <img class = "crop-img" src = "lary.jpg">
+      </div>
+    </div> <div class = "row">
+        <div class = "col-md-6">
+            <center>   5.	Hakeem Olajuwon </center> 
+        </div>
+        <div class = "col-md-6">
+          <img class = "crop-img" src = "hakeem.jpg">
+      </div>
+    </div> <div class = "row">
+        <div class = "col-md-6">
+            <center>  6.	Wilt Chamberlain </center> 
+        </div>
+        <div class = "col-md-6">
+          <img class = "crop-img" src = "wint.jpg">
+      </div>
+    </div> <div class = "row">
+        <div class = "col-md-6">
+            <center>  7.	Shaquille O’Neal</center> 
+        </div>
+        <div class = "col-md-6">
+          <img class = "crop-img" src = "oneal.jpg">
+      </div>
+    </div> <div class = "row">
+        <div class = "col-md-6">
+            <center>  8.	Kobe Bryant</center> 
+        </div>
+        <div class = "col-md-6">
+          <img class = "crop-img" src = "kobe.jpg">
+      </div>
+    </div> <div class = "row">
+        <div class = "col-md-6">
+            <center>   9.	LeBron James</center> 
+        </div>
+        <div class = "col-md-6">
+          <img class = "crop-img" src = "lebornjames.jpg">
+      </div>
+    </div> <div class = "row">
+        <div class = "col-md-6">
+            <center>   10.	Kevin Durant</center> 
+        </div>
+        <div class = "col-md-6">
+          <img class = "crop-img" src = "kevin.jpg">
+      </div>
+    </div>
+    </h2>
+</center>
+<br><br>
+       <h6><align = "right">KUNAL VERMA :1902124 <br>
+        KUNAL VERMA :1902123 <br>
+        ANNAHITA THAKUR :1902012
+       </align></h6>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+  </body>
+</html>
